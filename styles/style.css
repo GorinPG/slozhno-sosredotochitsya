@@ -20,31 +20,30 @@
 }
 
 .header{
-  block-size: max(100vh, 668px);
-  display: grid;
-  gap: 30px;
+  position: relative;
+  block-size: 100vh;
+  min-block-size: 668px;
+  display: flex;
   color: var(--main-text-color);
 }
 
 @media (width >= 768px) {
   .header {
     block-size: max(100vh, 1024px);
-    gap: 137px;
   }
 }
 
 @media (width >= 1024px) {
   .header {
     block-size: max(100vh, 768px);
-    gap: 89px;
   }
 }
 
 .decorated-item{
   display: var(--decorated-item-display);
   position: absolute;
-  inset-block-start: calc(0% + 10px);
-  inset-inline-end: calc(0% + 38px);
+  inset-block-start: 10px;
+  inset-inline-end: 28px;
   text-align: center;
   line-height: 138.889%;
   font-size: 18px;
@@ -54,8 +53,7 @@
 
 @media (width >= 768px) {
   .decorated-item {
-    inset-block-start: calc(0% + 20px);
-    inset-inline-end: calc(0% + 48px);
+    inset-block-start: 20px;
   }
 }
 
@@ -74,8 +72,9 @@
 
 .decorated-zone::before{
   content: "";
-  justify-self: end;
-  margin-block-start: 10px;
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-start: 10px;
   inline-size: 25px;
   block-size: 25px;
   border-block-start: 1px solid var(--main-text-color);
@@ -85,14 +84,14 @@
 
 @media (width >= 768px) {
   .decorated-zone::before {
-    margin-block-start: 20px;
+    inset-block-start: 20px;
   }
 }
 
 .decorated-zone::after{
   content: "";
-  justify-self: start;
-  margin-block-end: 10px;
+  position: absolute;
+  inset-block-end: 10px;
   inline-size: 25px;
   block-size: 25px;
   border-block-end: 1px solid var(--main-text-color);
@@ -102,37 +101,32 @@
 
 @media (width >= 768px) {
   .decorated-zone::after {
-    margin-block-end: 20px;
+    inset-block-end: 20px;
   }
 }
 
 .header__theme{
-  margin-block-start: 8px;
   display: grid;
-  gap: 65px;
-  align-items: center;
+  min-inline-size: 100%;
+  grid-template-rows: 1fr minmax(min-content, max-content) 1fr;
+  padding: 10px 0;
 }
 
 @media (width >= 768px) {
   .header__theme {
-    gap: 173px;
-  }
-}
-
-@media (width >= 1024px) {
-  .header__theme {
-    gap: 273px;
-    margin-block-start: -115px;
+    padding: 20px 0;
   }
 }
 
 .header__theme-menu{
   justify-self: end;
+  align-self: center;
 }
 
 @media (width >= 1024px) {
   .header__theme-menu{
     justify-self: center;
+    align-self: start;
   }
 }
 
@@ -187,21 +181,7 @@ border-block-end: 1px solid var(--main-text-color);
 }
 
 .cover{
-  max-inline-size: 100%;
-  display: grid;
-  gap: 55px;
-}
-
-@media (width >= 768px) {
-  .cover{
-    gap: 162px;
-  }
-}
-
-@media (width >= 1024px) {
-  .cover{
-    gap: 114px;
-  }
+  align-self: center;
 }
 
 .cover-title{
@@ -225,8 +205,12 @@ border-block-end: 1px solid var(--main-text-color);
   }
 }
 
+.header__text{
+  align-self: center;
+}
+
 @media (width >= 768px) {
-  .cover-title-text{
+  .header__text{
     justify-self: end;
     max-inline-size: 50%;
   }
@@ -234,6 +218,13 @@ border-block-end: 1px solid var(--main-text-color);
 
 .content{
   display: grid;
+  gap: 50px;
+}
+
+@media (width >= 768px) {
+  .content{
+    gap: 80px;
+  }
 }
 
 .title-decor{
@@ -245,20 +236,18 @@ border-block-end: 1px solid var(--main-text-color);
   margin-block-end: 10px;
 }
 
-.cover-title-text{
+.header__text .title-decor{
   margin-block-end: 0;
-  }
+}
 
 .chapters{
   display: grid;
   gap: 50px;
-  margin-block-end: 50px;
 }
 
 @media (width >= 768px) {
   .chapters{
     gap: 80px;
-    margin-block-end: 80px;
   }
 }
 
@@ -281,6 +270,9 @@ border-block-end: 1px solid var(--main-text-color);
 @media (width >= 768px) {
   .chapters-list-item{
     grid-template-columns: 1fr 2fr;
+  }
+  .chapters-list-item:last-child{
+    grid-template-rows: 23px auto;
   }
 }
 
@@ -313,6 +305,11 @@ border-block-end: 1px solid var(--main-text-color);
 
 .tips-title{
   margin-block-end: 0;
+}
+
+@media (width >= 768px){
+  .tips-title{
+  }  
 }
 
 .focus-list{
@@ -365,10 +362,6 @@ border-block-end: 1px solid var(--main-text-color);
 .card__text{
   color: var(--card-text-color);
   line-height: 130%;
-}
-
-.chapters-list-item:last-child .tips-title{
-  margin-block-end: 20px;
 }
 
 @media (width >= 768px) {
@@ -430,9 +423,10 @@ border-block-end: 1px solid var(--main-text-color);
 }
 
 .footer{
-  block-size: max(100vh, 668px);
+  position: relative;
+  block-size: 100vh;
+  min-block-size: 668px;
   display: grid;
-  grid-template-rows: auto 1fr auto;
   font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
 }
 
@@ -456,7 +450,5 @@ border-block-end: 1px solid var(--main-text-color);
   font-style: normal;
   font-weight: 700;
   line-height: 82.5%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  place-self: center;
 }
